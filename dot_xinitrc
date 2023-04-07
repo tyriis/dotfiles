@@ -1,7 +1,8 @@
 # ~/.xinitrc
 
-# xset -dpms
-# xset s 0 0
+# disable hibernation and display power managment
+xset -dpms
+xset s 0 0
 
 # remove CAPS LOCK
 # xmodmap -e "remove lock = Caps_Lock"
