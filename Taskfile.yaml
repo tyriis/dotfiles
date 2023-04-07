@@ -15,7 +15,7 @@ tasks:
 
   install-i3:
     cmds:
-      - yay -S --needed --noconfirm xorg-server xorg-xev xorg-xinit xorg-xrandr i3-wm i3blocks i3blocks-contrib
+      - yay -S --needed --noconfirm xorg-server xorg-xev xorg-xinit xorg-xrandr xorg-xset i3-wm i3blocks i3blocks-contrib
 
   install-alacritty:
     cmds:
