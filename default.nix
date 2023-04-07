@@ -9,4 +9,5 @@ pkgs.mkShell {
   ];
 
   EDITOR = "code -r -w";
+  GITHUB_USERNAME = "tyriis";
 }
