@@ -1,0 +1,30 @@
+---
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  install-yay:
+    cmds:
+      - git clone https://aur.archlinux.org/yay-bin.git
+      - cd yay-bin && makepkg -si
+      - defer: rm -rf yay-bin
+      - yay -Y --gendb
+      - yay -Syu --devel
+      - yay -Y --devel --save
+
+  install-i3:
+    cmds:
+      - yay -S --needed --noconfirm xorg-server xorg-xev xorg-xinit xorg-xrandr i3-wm i3blocks i3blocks-contrib
+
+  install-alacritty:
+    cmds:
+      - yay -S --needed --noconfirm alacritty
+
+  install-fonts:
+    cmds:
+      - yay -S --needed --noconfirm ttf-inconsolata-go-nerd
+
+  install-zsh:
+    cmds:
+      - yay -S --needed --noconfirm zsh zsh-nix-shell nix-zsh-completions spaceship-prompt zsh-syntax-highlighting zsh-autosuggestions exa
