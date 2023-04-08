@@ -66,6 +66,7 @@ zle -N down-line-or-beginning-search
 [[ -f $ZDOTDIR/prompt.zsh ]] && source $ZDOTDIR/prompt.zsh
 [[ -f /usr/bin/vault ]] && source $ZDOTDIR/vault.zsh
 [[ -f /usr/bin/kubectl ]] && source $ZDOTDIR/kubernetes.zsh
+which chezmoi &>/dev/null && source $ZDOTDIR/chezmoi.zsh
 
 eval "$(direnv hook zsh)"
 
