@@ -15,7 +15,9 @@ tasks:
 
   install-i3:
     cmds:
-      - yay -S --needed --noconfirm xorg-server xorg-xev xorg-xinit xorg-xrandr xorg-xset i3-wm i3blocks i3blocks-contrib rofi
+      - yay -S --needed --noconfirm xorg-server xorg-xev xorg-xinit xorg-xrandr xorg-xset xorg-font-util i3-wm i3blocks i3blocks-contrib rofi
+      # does not work currently
+      # betterlockscreen
 
   install-alacritty:
     cmds:
@@ -23,7 +25,7 @@ tasks:
 
   install-fonts:
     cmds:
-      - yay -S --needed --noconfirm ttf-inconsolata-go-nerd ttf-firacode-nerd
+      - yay -S --needed --noconfirm ttf-inconsolata-go-nerd ttf-firacode-nerd ttf-font-awesome ttf-dejavu ttf-roboto noto-fonts-emoji
 
   install-zsh:
     cmds:
