@@ -15,7 +15,7 @@ tasks:
 
   install-i3:
     cmds:
-      - yay -S --needed --noconfirm xorg-server xorg-xev xorg-xinit xorg-xrandr xorg-xset i3-wm i3blocks i3blocks-contrib
+      - yay -S --needed --noconfirm xorg-server xorg-xev xorg-xinit xorg-xrandr xorg-xset i3-wm i3blocks i3blocks-contrib rofi
 
   install-alacritty:
     cmds:
@@ -23,7 +23,7 @@ tasks:
 
   install-fonts:
     cmds:
-      - yay -S --needed --noconfirm ttf-inconsolata-go-nerd
+      - yay -S --needed --noconfirm ttf-inconsolata-go-nerd ttf-firacode-nerd
 
   install-zsh:
     cmds:
