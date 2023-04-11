@@ -218,11 +218,12 @@ new_window none
 # disable mouse over
 focus_follows_mouse no
 
+# TODO: can this be moved to systemctl user
 # start network manager applet
 exec --no-startup-id nm-applet
 
 # start barrier
-exec --no-startup-id barrier
+# exec --no-startup-id barrier
 
 for_window [class="dunst"] floating enable
 hide_edge_borders both
