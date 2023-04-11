@@ -46,7 +46,7 @@ markup=none
 
 
 [arch_update]
-command=$HOME/.dotfiles/i3blocks/blocks/arch_update/arch_update -q -a
+command=$HOME/.config/i3blocks/blocks/arch_update/arch_update -q -a
 interval=once
 short_text=false
 label=UPDATES: 
@@ -68,7 +68,7 @@ interval=30
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-command=$HOME/.dotfiles/i3blocks/blocks/memory/memory
+command=$HOME/.config/i3blocks/blocks/memory/memory
 # command=/usr/lib/i3blocks/memory/memory
 label=MEM: 
 separator=true
@@ -131,16 +131,15 @@ command=wget -qO - icanhazip.com
 interval=once
 label=IP: 
 
-
-
-
+{{- if ne .chezmoi.hostname "red" }}
 # Battery indicator
 #
 # The battery instance defaults to 0.
-#[battery]
-#label=BAT
-#label=⚡
-#interval=30
+[battery]
+label=BAT
+label=⚡
+interval=30
+{{ end -}}
 
 # Date Time
 #
