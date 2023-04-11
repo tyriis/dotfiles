@@ -23,6 +23,10 @@ tasks:
     cmds:
       - yay -S --needed --noconfirm alacritty
 
+  install-tabby:
+    cmds:
+      - yay -S --needed --noconfirm tabby
+
   install-fonts:
     cmds:
       - yay -S --needed --noconfirm ttf-inconsolata-go-nerd ttf-firacode-nerd ttf-font-awesome ttf-dejavu ttf-roboto noto-fonts-emoji
@@ -30,3 +34,11 @@ tasks:
   install-zsh:
     cmds:
       - yay -S --needed --noconfirm zsh zsh-nix-shell nix-zsh-completions spaceship-prompt zsh-syntax-highlighting zsh-autosuggestions exa
+
+  install:
+    cmds:
+      - task: install-yay
+      - task: install-i3
+      - task: install-tabby
+      - task: install-fonts
+      - task: install-zsh
