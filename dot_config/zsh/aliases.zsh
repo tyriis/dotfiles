@@ -5,8 +5,16 @@ alias tmux="tmux -2 attach"
 alias reboot="systemctl reboot"
 alias poweroff="systemctl poweroff"
 
-# use nvim instead of vim
-alias vim=nvim
+# use nvim instead of vim if available
+if [[ "$(command -v vim)" || "$(command -v nvim)" ]]; then
+    vim() {
+        if [[ "$(command -v nvim)" ]]; then
+            command nvim "$@"
+        else
+            command vim "$@"
+        fi
+    }
+fi
 
 # enable ls colors
 alias ls="ls --color=auto"
@@ -36,3 +44,35 @@ if [ "$(command -v exa)" ]; then
     alias ls='exa --color auto --icons -a -s type -h --time-style long-iso'
     alias ll='exa -l --color always --icons -a -s type -h'
 fi
+
+# use ydiff with chezmoi diff
+if [ "$(command -v chezmoi)" ]; then
+    chezmoi() {
+        if [[ $@ == "diff" && "$(command -v ydiff)" ]]; then
+            command "$(command -v chezmoi)" diff | "$(command -v ydiff)" -s -w0 --wrap
+        else
+            command "$(command -v chezmoi)" "$@"
+        fi
+    }
+fi
+
+# test if a GITHUB_TOKEN env variable contain a valid gh-token
+test-token() {
+    if [[ -z $GITHUB_TOKEN ]]; then
+        echo "❌ GITHUB_TOKEN is not set" && return 1
+    fi
+    if [ $(curl -s -o /dev/null -I -H "Authorization: token $GITHUB_TOKEN" -w "%{http_code}" https://api.github.com/user/issues | grep "200") ]; then
+        echo "✅ GITHUB_TOKEN is valid" && return 0
+    else
+        echo "❌ GITHUB_TOKEN is not valid" && return 1
+    fi
+}
+
+# use ydiff in git diff
+git() {
+    if [[ $@ == "diff" && "$(command -v ydiff)" ]]; then
+        command "$(command -v git)" diff | "$(command -v ydiff)" -s -w0 --wrap
+    else
+        command "$(command -v git)" "$@"
+    fi
+}
