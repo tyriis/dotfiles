@@ -31,11 +31,15 @@ tasks:
 
   install-zsh:
     cmds:
-      - yay -S --needed --noconfirm zsh zsh-nix-shell nix-zsh-completions spaceship-prompt zsh-syntax-highlighting zsh-autosuggestions exa
+      - yay -S --needed --noconfirm zsh nix zsh-nix-shell nix-zsh-completions spaceship-prompt zsh-syntax-highlighting zsh-autosuggestions exa
+      - sudo systemctl enable nix-daemon.service
+      - sudo systemctl start nix-daemon.service
+
+
 
   install:
     cmds:
-      - task: install-yay
+      # - task: install-yay
       - task: install-i3
       - task: install-tabby
       - task: install-fonts
