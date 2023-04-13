@@ -3,6 +3,11 @@
 data:
   vault: {{ $vault | quote }}
 
+edit:
+  command: code
+  args:
+    - --wait
+
 scriptEnv:
   VAULT_ADDR: {{ $vault | quote }}
 
