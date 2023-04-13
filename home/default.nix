@@ -7,7 +7,7 @@ pkgs.mkShell {
     pkgs.vault
     pkgs.age
     pkgs.sops
-    nodePackages.zx
+    pkgs.nodePackages.zx
   ];
 
   EDITOR = "code -r -w";

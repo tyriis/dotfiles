@@ -1,0 +1,16 @@
+{{- $vault := promptStringOnce . "vault" "VAULT_ADDR" -}}
+
+data:
+  vault: {{ $vault | quote }}
+
+scriptEnv:
+  VAULT_ADDR: {{ $vault | quote }}
+
+diff:
+  exclude:
+    - scripts
+
+encryption: age
+age:
+  identity: {{ .chezmoi.homeDir }}/.config/age/keys.txt
+  recipient: age17eqh6etg4huekwz7rl005eh2mj0dxysw9atuvvwfcr75kdss44vs5safhs
