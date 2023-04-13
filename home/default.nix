@@ -4,8 +4,10 @@ pkgs.mkShell {
   buildInputs = [
     pkgs.go-task
     pkgs.chezmoi
-    pkgs.htop
-    pkgs.direnv
+    pkgs.vault
+    pkgs.age
+    pkgs.sops
+    nodePackages.zx
   ];
 
   EDITOR = "code -r -w";
