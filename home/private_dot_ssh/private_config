@@ -1,7 +1,4 @@
 HashKnownHosts no
 AddKeysToAgent yes
 
-Host github.com
-  User git
-
 Include config.d/*
