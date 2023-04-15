@@ -27,12 +27,16 @@ zstyle ':completion::complete:*' gain-privileges 1
 
 if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-else
+elif [[ -z $IN_NIX_SHELL ]]; then
   echo "zsh-syntax-highlightning not found"
+else
+  source $(ls $NIX_STORE/*zsh-syntax-highlighting*/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh) || echo "zsh-syntax-highlightning not found"
 fi
 
 if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-else
+elif [[ -z $IN_NIX_SHELL ]]; then
   echo "zsh-autosuggestions not found"
+else
+  source $(ls $NIX_STORE/*zsh-autosuggestions*/share/zsh-autosuggestions/zsh-autosuggestions.zsh) || echo "zsh-autosuggestions not found"
 fi

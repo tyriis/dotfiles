@@ -7,6 +7,10 @@ pkgs.mkShell {
     pkgs.vault
     pkgs.age
     pkgs.sops
+    pkgs.zsh
+    pkgs.zsh-autosuggestions
+    pkgs.zsh-syntax-highlighting
+    pkgs.spaceship-prompt
     pkgs.nodePackages.zx
   ];
 

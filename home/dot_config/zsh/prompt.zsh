@@ -1,5 +1,10 @@
-source /usr/lib/spaceship-prompt/spaceship.zsh
-# prompt spaceship
+if [[ -f /usr/lib/spaceship-prompt/spaceship.zsh ]]; then
+  source /usr/lib/spaceship-prompt/spaceship.zsh
+elif [[ -z $IN_NIX_SHELL ]]; then
+  echo "❌ spaceship-prompt not found"
+else
+  source $(ls $NIX_STORE/*spaceship-prompt*/lib/spaceship-prompt/spaceship.zsh) || echo "❌ spaceship-prompt not found"
+fi
 
 # ORDER
 SPACESHIP_PROMPT_ORDER=(
