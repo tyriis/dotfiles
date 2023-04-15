@@ -1,0 +1,17 @@
+export VAULT_ADDR={{ .vault }}
+
+# detect if we are in a vscode remote session based on the env variable VSCODE_INJECTION set or not
+if [[ ! -z "${VSCODE_INJECTION}" ]]; then
+  # cleanup left over broken symlinks from previous sessions
+  find /run/user/$(id -u)/vscode* -xtype l -delete
+  # test if there is an active vscode-ssh-auth-sock left
+  # TODO: this currently print an error if not exists, make it fail silent
+  if [[ $(/usr/bin/ls -td /run/user/$(id -u)/vscode-ssh-auth-sock*) ]]; then
+    # re-link expected symlink with the 1st found
+    ln -s $(/usr/bin/ls -l /run/user/$(id -u)/vscode-ssh-auth-sock* | awk '{print $11}' | head -n 1) "$SSH_AUTH_SOCK" 2> /dev/null
+  else
+    # race condition if no previous sock existed before
+    # we assume that the newest ssh sock from /tmp will be the one just created from vscode
+    ln -s $(/usr/bin/ls -rd -- $(/usr/bin/ls -td -- /tmp/ssh-* | head -n 1)/* | head -n 1) "$SSH_AUTH_SOCK" 2> /dev/null
+  fi
+fi
