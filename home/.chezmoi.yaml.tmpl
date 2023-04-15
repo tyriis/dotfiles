@@ -1,5 +1,11 @@
 {{- $vault := promptStringOnce . "vault" "VAULT_ADDR" -}}
 
+cd:
+  command: zsh
+
+shell:
+  command: zsh
+
 data:
   vault: {{ $vault | quote }}
 
