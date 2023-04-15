@@ -11,7 +11,11 @@
 [user]
   email = tyriis@users.noreply.github.com
   name = Nils Müller
+  {{- if eq .chezmoi.hostname "red" }}
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICSzX7EmbKCs4+wXIE0ksCrGtOPo8dR7WcsWPydJkZn
+  {{- else if eq .chezmoi.hostname "strg" }}
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICSzX7EmbKCs4+wXIE0ksCrGtOPo8dR7WcsWPydJkZnF
+  {{- end }}
 
 [alias]
   co = checkout
