@@ -1,3 +1,6 @@
+{{ if eq .osid "linux-nixos" }}
+source $(ls /nix/store/*spaceship-prompt*/lib/spaceship-prompt/spaceship.zsh) || echo "❌ spaceship-prompt not found"
+{{ else }}
 if [[ -f /usr/lib/spaceship-prompt/spaceship.zsh ]]; then
   source /usr/lib/spaceship-prompt/spaceship.zsh
 elif [[ -z $IN_NIX_SHELL ]]; then
@@ -5,6 +8,7 @@ elif [[ -z $IN_NIX_SHELL ]]; then
 else
   source $(ls $NIX_STORE/*spaceship-prompt*/lib/spaceship-prompt/spaceship.zsh) || echo "❌ spaceship-prompt not found"
 fi
+{{ end }}
 
 # ORDER
 SPACESHIP_PROMPT_ORDER=(

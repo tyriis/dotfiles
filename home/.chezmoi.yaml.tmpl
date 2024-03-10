@@ -1,5 +1,10 @@
 {{- $vault := promptStringOnce . "vault" "VAULT_ADDR" -}}
 
+{{- $osid := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
 cd:
   command: zsh
 
@@ -8,6 +13,7 @@ shell:
 
 data:
   vault: {{ $vault | quote }}
+  osid: {{ $osid | quote }}
 
 edit:
   command: code

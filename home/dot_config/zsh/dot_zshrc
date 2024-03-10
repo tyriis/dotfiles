@@ -68,7 +68,10 @@ zle -N down-line-or-beginning-search
 [[ -f /usr/bin/kubectl ]] && source $ZDOTDIR/kubernetes.zsh
 which chezmoi &>/dev/null && source $ZDOTDIR/chezmoi.zsh
 
-eval "$(direnv hook zsh)"
+# use nvim instead of vim if available
+if [[ "$(command -v direnv)" ]]; then
+  eval "$(direnv hook zsh)"
+fi
 
 # Load machine-specific configuration if present
 [[ -f $HOME/.zsh_profile ]] && source $HOME/.zsh_profile
