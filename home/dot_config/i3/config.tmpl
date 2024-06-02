@@ -178,7 +178,11 @@ bar {
   # tray_output DP-1
   # output DP-1
   workspace_buttons yes
+  {{ if eq .osid "linux-nixos" }}
+  status_command /run/current-system/sw/bin/i3blocks
+  {{ else }}
   status_command /usr/bin/i3blocks
+  {{ end }}
   colors {
     separator #666666
     background #222222
