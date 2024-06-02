@@ -8,7 +8,12 @@ $.log = (entry) => {
   log(entry)
 }
 
-const vaultState = await $`vault token lookup`
-if (vaultState.exitCode === 2) {
-  await $`vault login`
+try {
+  await $`vault token lookup`
+} catch (error) {
+  if (error.message.indexOf('permission denied') !== -1) {
+    await $`vault login`
+  } else {
+    process.exit(1)
+  }
 }
