@@ -72,6 +72,10 @@ which chezmoi &>/dev/null && source $ZDOTDIR/chezmoi.zsh
 if [[ "$(command -v direnv)" ]]; then
   eval "$(direnv hook zsh)"
 fi
+if [[ "$(command -v mise)" ]]; then
+  eval "$(command mise activate zsh)"
+fi
+
 
 # Load machine-specific configuration if present
 [[ -f $HOME/.zsh_profile ]] && source $HOME/.zsh_profile
