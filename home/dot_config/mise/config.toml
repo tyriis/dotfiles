@@ -1,0 +1,10 @@
+[settings]
+experimental = true
+
+[tools]
+node = "20.14.0"
+pnpm = "9.5.0"
+direnv = "2.34.0"
+k9s = "0.32.5"
+kubectl = "1.30.3"
+task = "3.38.0"
