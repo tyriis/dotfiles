@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://json.schemastore.org/taskfile.json
 # https://taskfile.dev
 
 version: '3'
