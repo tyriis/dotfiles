@@ -32,3 +32,4 @@ export LESS=-iXFR
 # ask for passphrase in terminal
 export GPG_TTY=$(tty)
 
+export ASDF_HASHICORP_TERRAFORM_VERSION_FILE=".terraform-version"
