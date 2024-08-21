@@ -1,10 +1,15 @@
+# https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/
 background {
     monitor =
-    path = $HOME/Pictures/wallpapers/wayland-anime-girl.png   # only png supported for now
+    path = $XDG_PICTURES_DIR/wallpapers/wayland-anime-girl.png   # only png supported for now
 }
 
 input-field {
+{{- if eq .chezmoi.hostname "desktop" }}
+    monitor = HDMI-A-4
+{{ else -}}
     monitor = DP-1
+{{- end }}
     size = 200, 50
     outline_thickness = 3
     dots_size = 0.33 # Scale of input-field height, 0.2 - 0.8
@@ -34,7 +39,11 @@ input-field {
 }
 
 label {
+{{- if eq .chezmoi.hostname "desktop" }}
+    monitor = HDMI-A-4
+{{ else -}}
     monitor = DP-1
+{{- end }}
     #clock
     text = cmd[update:1000] echo "$TIME"
     color = rgba(200, 200, 200, 1.0)
@@ -48,7 +57,11 @@ label {
 }
 
 label {
+{{- if eq .chezmoi.hostname "desktop" }}
+    monitor = HDMI-A-4
+{{ else -}}
     monitor = DP-1
+{{- end }}
     text = $USER
     color = rgba(200, 200, 200, 1.0)
     font_size = 20
@@ -61,8 +74,12 @@ label {
 }
 
 image {
+{{- if eq .chezmoi.hostname "desktop" }}
+    monitor = HDMI-A-4
+{{ else -}}
     monitor = DP-1
-    path = $HOME/Pictures/avatars/groot-tyriis.jpg
+{{- end }}
+    path = $XDG_PICTURES_DIR/avatars/groot-tyriis.jpg
     size = 144 # lesser side if not 1:1 ratio
     rounding = -1 # negative values mean circle
     border_size = 4
