@@ -25,9 +25,12 @@
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
 
+{{- if eq .chezmoi.hostname "desktop" }}
+source = ~/.config/hypr/conf/monitor/desktop-dual-screen.conf
+{{ else -}}
 # source = ~/.config/hypr/conf/monitor/laptop-single-screen.conf
-source = ~/.config/hypr/conf/monitor/workstation-dual-screen.conf
-
+source = ~/.config/hypr/conf/monitor/wlaptop-dual-screen.conf
+{{- end }}
 
 ###################
 ### MY PROGRAMS ###
