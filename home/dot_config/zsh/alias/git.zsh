@@ -7,15 +7,17 @@ if [ "$result" -gt 0 ]; then
   ZSH_FORGIT_INSTALLED="1"
 fi
 git() {
-    if [[  $@ == "diff" && "$ZSH_FORGIT_INSTALLED" == "1" ]]; then
-        command "$(command -v git)" forgit diff
-    elif [[ $@ == "diff" && "$(command -v ydiff)" ]]; then
-      command "$(command -v git)" diff | "$(command -v ydiff)" -s -w0 --wrap
-    elif [[  $@ == "add" && "$ZSH_FORGIT_INSTALLED" == "1" ]]; then
-      command "$(command -v git)" forgit add
-    elif [[ $@ == "broom" ]]; then
-        command "$(command -v git)" branch --merged | grep -E -v "(^\*|master|main|development)" | xargs "$(command -v git)" branch -d
-    else
-        command "$(command -v git)" "$@"
-    fi
+  if [[  $@ == "diff" && "$ZSH_FORGIT_INSTALLED" == "1" ]]; then
+    command "$(command -v git)" forgit diff
+  elif [[ $@ == "diff" && "$(command -v ydiff)" ]]; then
+    command "$(command -v git)" diff | "$(command -v ydiff)" -s -w0 --wrap
+  elif [[  $@ == "add" && "$ZSH_FORGIT_INSTALLED" == "1" ]]; then
+    command "$(command -v git)" forgit add
+  elif [[  $@ == "log" && "$ZSH_FORGIT_INSTALLED" == "1" ]]; then
+    command "$(command -v git)" forgit log
+  elif [[ $@ == "broom" ]]; then
+    command "$(command -v git)" branch --merged | grep -E -v "(^\*|master|main|development)" | xargs "$(command -v git)" branch -d
+  else
+    command "$(command -v git)" "$@"
+  fi
 }
