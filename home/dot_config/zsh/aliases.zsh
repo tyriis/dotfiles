@@ -24,7 +24,7 @@ alias ll="ls -lah"
 alias grep="grep --color=auto"
 
 # enable colordiff
-alias diff=colordiff
+# alias diff=colordiff
 
 # http serve this directory
 alias serve="python3 -m http.server"
@@ -68,11 +68,4 @@ test-token() {
     fi
 }
 
-# use ydiff in git diff
-git() {
-    if [[ $@ == "diff" && "$(command -v ydiff)" ]]; then
-        command "$(command -v git)" diff | "$(command -v ydiff)" -s -w0 --wrap
-    else
-        command "$(command -v git)" "$@"
-    fi
-}
+[[ -f $(command -v git) ]] && source $ZDOTDIR/alias/git.zsh
