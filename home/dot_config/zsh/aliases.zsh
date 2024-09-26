@@ -48,6 +48,12 @@ fi
 # use ydiff with chezmoi diff
 if [ "$(command -v chezmoi)" ]; then
     chezmoi() {
+        if [ "$(command -v vault)" ]; then
+            command "$(command -v vault)" token lookup -format=json > /dev/null 2>&1
+            if [ $? -ne 0 ]; then
+                command "$(command -v vault)" login -method=oidc role=gsuite > /dev/null 2>&1
+            fi
+        fi
         if [[ $@ == "diff" && "$(command -v ydiff)" ]]; then
             command "$(command -v chezmoi)" diff | "$(command -v ydiff)" -s -w0 --wrap
         else

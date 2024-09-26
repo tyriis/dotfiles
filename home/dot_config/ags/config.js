@@ -1,10 +1,12 @@
+// const os = require('os'); this not work
+import { applauncher } from "./applauncher.js"
+
 const hyprland = await Service.import("hyprland")
 const notifications = await Service.import("notifications")
 const mpris = await Service.import("mpris")
 const audio = await Service.import("audio")
 const battery = await Service.import("battery")
 const systemtray = await Service.import("systemtray")
-import { applauncher } from "./applauncher.js"
 
 const date = Variable("", {
     poll: [1000, 'date "+%Y-%m-%d %H:%M:%S"'],
@@ -29,16 +31,20 @@ const date = Variable("", {
 //     })
 // }
 
+// const monitorOffset = os.hostname() === "dell" ? 1 : 0
+const monitorOffset = 0
+
 function Workspaces(monitor) {
     const activeId = hyprland.active.workspace.bind("id")
     const workspaces = hyprland.bind("workspaces")
         .as(ws => ws
-            .filter((workspace) => workspace.monitorID-1 === monitor) // only show workspaces on the current monitor
+            .filter((workspace) => workspace.monitorID+monitorOffset === monitor) // only show workspaces on the current monitor
             .map(({ id }) => Widget.Button({
                 on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
                 child: Widget.Label(`${id}`),
                 class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
             })))
+    console.log(hyprland)
     return Widget.Box({
         class_name: "workspaces",
         children: workspaces,
@@ -226,7 +232,7 @@ function Right() {
         spacing: 8,
         children: [
             Volume(),
-            BatteryLabel(),
+            //BatteryLabel(),
             SysTray(),
             Clock(),
             // dateTimeWithCalendar,

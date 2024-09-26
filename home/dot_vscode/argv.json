@@ -19,6 +19,13 @@
   // "crash-reporter-id": "000b7567-b951-4278-bb45-49b67c5190a8"
 
   // use gonme keyring for password (f.e. github login)
-  "password-store": "gnome-libsecret"
+  "password-store": "gnome-libsecret",
 
+  // Allows to disable crash reporting.
+  // Should restart the app if the value is changed.
+  "enable-crash-reporter": true,
+
+  // Unique id used for correlating crash reports sent from this instance.
+  // Do not edit this value.
+  "crash-reporter-id": "ef36ee60-45fc-49e9-86bc-736ddebc64f5"
 }
